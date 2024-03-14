@@ -1,0 +1,13 @@
+{
+    "loginButton": ".HomePageCTAButtons_loginToChatCTA__4pytZ",
+    "accountIdentifier": "#accountIdentifier",
+    "password": "#password",
+    "closeButton": "svg[aria-label='close']",
+    "cameraButton": "button.qJKfS",
+    "gotItButton": "button.NRgbw.eKaL7.Bnaur.re7ND",
+    "captureButton": "button.FBYjn.gK0xL.A7Cr_.m3ODJ",
+    "sendToButton": "button.YatIx.fGS78.eKaL7.Bnaur",
+    "person2": "div.RBx9s.nonIntl",
+    "submitButtonLoop": "button.TYX6O.eKaL7.Bnaur",
+    "nextButton": "button.btn.btn-lg.btn-default"
+}
