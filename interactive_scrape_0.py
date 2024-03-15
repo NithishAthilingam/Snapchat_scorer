@@ -53,21 +53,33 @@ WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, sel
 WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, selectors['cameraButton']))).click()
 
 #%%
-##WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, selectors['gotItButton']))).click()
+WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, selectors['gotItButton']))).click()
 
 # Permissions might need manual handling or browser profile configuration
 #%%
 while True:
     try:
-        driver.find_element(By.CSS_SELECTOR, selectors['captureButton']).click()
-    except Exception as e:
-        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, selectors['cameraButton']))).click()
-        driver.find_element(By.CSS_SELECTOR, selectors['captureButton']).click()
+        try:
+            driver.find_element(By.CSS_SELECTOR, selectors['captureButton']).click()
+        except Exception as e:
+            try:
+                WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, selectors['cameraButton']))).click()
+                driver.find_element(By.CSS_SELECTOR, selectors['captureButton']).click()
+            except:
+                WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, selectors['closeButton']))).click()
+                WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, selectors['cameraButton']))).click()
+                driver.find_element(By.CSS_SELECTOR, selectors['captureButton']).click()
 
-    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, selectors['sendToButton']))).click()
-    person_element = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//div[contains(text(), '{}')]".format(person))))
-    person_element.click()
-    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, selectors['submitButtonLoop']))).click()
-    time.sleep(random.uniform(10, 15))
+
+        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, selectors['sendToButton']))).click()
+        person_element = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//div[contains(text(), '{}')]".format(person))))
+        person_element.click()
+        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, selectors['submitButtonLoop']))).click()
+        time.sleep(random.uniform(10, 15))
+
+    except Exception as e:
+        print("Exception occurred:", e)
+        driver.refresh()
+        continue
 
 # %%
